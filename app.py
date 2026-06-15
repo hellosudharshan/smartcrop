@@ -10,8 +10,12 @@ import pickle
 import time
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
-pickle_in1 = open(r"crop_pred_rand.pkl","rb")
-classifier=pickle.load(pickle_in1)
+try:
+    with open("crop_pred_rand.pkl","rb") as f:
+        classifier = pickle.load(f)
+except Exception as e:
+    st.error(f"Model loading error: {e}")
+    st.stop()
 
 
 # Security
